@@ -1,47 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Excuse Generator</title>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción de Precio de Coches</title>
+
     <style>
-      body {
-        font-family: "Arial", sans-serif;
-        text-align: center;
-        margin: 50px;
-      }
-      button {
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-      }
-      #excuse {
-        margin-top: 20px;
-        font-size: 18px;
-      }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .resultado {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #d4edda;
+            border-radius: 5px;
+            color: #155724;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
     </style>
-  </head>
-  <body>
-    <h1>Excuse Generator</h1>
-    <button onclick="generateExcuse()">Generate Excuse</button>
-    <p id="excuse"></p>
 
-    <script>
-      const excuses = [
-        "My dog ate my homework.",
-        "'My grandma broke the car while I was praying.",
-        " His turtle crushed the keys before class.",
-        "My bird ate my homework when I finished.",
-        "My brother peed the car during my lunch.",
-        "The dog ate the keys while I was praying."
-      ];
+</head>
 
-      function generateExcuse() {
-        const excuseElement = document.getElementById("excuse");
-        const randomIndex = Math.floor(Math.random() * excuses.length);
-        const randomExcuse = excuses[randomIndex];
-        excuseElement.textContent = randomExcuse;
-      }
-    </script>
-  </body>
+<body>
+
+    <div class="container">
+
+        <h1>Predicción de Precio de Coches Usados</h1>
+
+        <form method="POST">
+
+            <label>Marca</label>
+
+            <select name="company">
+
+                <option value="Maruti">Maruti</option>
+                <option value="Hyundai">Hyundai</option>
+                <option value="Honda">Honda</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Mercedes">Mercedes</option>
+                <option value="BMW">BMW</option>
+                <option value="Audi">Audi</option>
+
+            </select>
+
+            <label>Año</label>
+            <input type="number" name="year" required>
+
+            <label>Kilómetros recorridos</label>
+            <input type="number" name="kms_driven" required>
+
+            <label>Combustible</label>
+
+            <select name="fuel_type">
+
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="LPG">LPG</option>
+
+            </select>
+
+            <button type="submit">Predecir precio</button>
+
+        </form>
+
+        {% if prediction %}
+
+        <div class="resultado">
+            Precio estimado: {{ prediction }}
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
 </html>
